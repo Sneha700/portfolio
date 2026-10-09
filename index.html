@@ -3,412 +3,578 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naga Sai Sneha Yanamala - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Naga Sai Sneha Yanamala - Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --accent: #2563eb;
+            --border: #e5e7eb;
+            --bg-alt: #f9fafb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Container & Sections */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Hero */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 6rem 0 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: #111827;
+        }
+
+        .hero-role {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        .hero-summary {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        .hero-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--bg-alt);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .detail-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Skills */
+        .skill-group {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .skill-group h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Experience */
+        .job {
+            margin-bottom: 3rem;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .job-company {
+            font-size: 1.125rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .job-meta {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .project {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: var(--bg-alt);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .project-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-bullets {
+            padding-left: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .project-bullets li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education, Achievements, Certifications */
+        .list-card {
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .list-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .list-card .subtitle {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .list-card .desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .list-card .meta {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--bg-alt);
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Contact */
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .contact-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background-color: var(--bg-alt);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.25rem;
+            }
         }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
+<body>
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass-card border-b border-gray-200/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="text-xl font-bold text-slate-800">NS</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#skills" class="text-slate-600 hover:text-blue-600 font-medium transition">Skills</a>
-                    <a href="#experience" class="text-slate-600 hover:text-blue-600 font-medium transition">Experience</a>
-                    <a href="#education" class="text-slate-600 hover:text-blue-600 font-medium transition">Education</a>
-                    <a href="#contact" class="text-slate-600 hover:text-blue-600 font-medium transition">Contact</a>
-                </div>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Sneha Yanamala</a>
+            <div class="nav-links">
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#certifications">Certifications</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold tracking-wide mb-6">
-                    Available for Placement Year
-                </span>
-                <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 leading-tight">
-                    Naga Sai <br> <span class="gradient-text">Sneha Yanamala</span>
-                </h1>
-                <p class="text-xl font-medium text-slate-700 mb-4">
-                    MSc Data Science Student & Software Engineer
-                </p>
-                <p class="text-slate-600 text-lg leading-relaxed mb-8 max-w-lg">
-                    MSc Data Science student at the University of Hertfordshire with 2+ years of enterprise R&D experience at Accenture building event-driven platforms, streaming data pipelines, and AI-assisted automation systems. Bringing a rigorous mathematical background and hands-on technical expertise in Python, Java, Spring Boot, Kafka, and cloud infrastructure.
-                </p>
-                <div class="flex gap-4">
-                    <a href="#contact" class="gradient-bg text-white px-8 py-3 rounded-xl font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition transform hover:-translate-y-1">
-                        Get in touch
-                    </a>
-                    <a href="#experience" class="bg-white text-slate-700 border border-slate-200 px-8 py-3 rounded-xl font-semibold shadow-sm hover:bg-slate-50 transition transform hover:-translate-y-1">
-                        View work
-                    </a>
-                </div>
-            </div>
-            
-            <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
-                <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-purple-200/50 blur-2xl"></div>
-                <div class="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 rounded-full bg-blue-200/50 blur-2xl"></div>
-                
-                <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-blue-500"></span> Profile Summary
-                </h3>
-                
-                <div class="space-y-4 relative z-10">
-                    <div class="flex justify-between items-center py-3 border-b border-slate-200/60">
-                        <span class="text-slate-500 font-medium">Degree</span>
-                        <span class="text-slate-800 font-semibold text-right">MSc Data Science (UK)</span>
-                    </div>
-                    <div class="flex justify-between items-center py-3 border-b border-slate-200/60">
-                        <span class="text-slate-500 font-medium">Placement</span>
-                        <span class="text-blue-600 font-bold text-right">Eligible (2026–2028)</span>
-                    </div>
-                    <div class="flex justify-between items-center py-3 border-b border-slate-200/60">
-                        <span class="text-slate-500 font-medium">Core Stack</span>
-                        <span class="text-slate-800 font-semibold text-right">Python · Java · Kafka · AWS</span>
-                    </div>
-                    <div class="flex justify-between items-center py-3 border-b border-slate-200/60">
-                        <span class="text-slate-500 font-medium">Speciality</span>
-                        <span class="text-slate-800 font-semibold text-right">Data Pipelines & Systems</span>
-                    </div>
-                    <div class="flex justify-between items-center py-3">
-                        <span class="text-slate-500 font-medium">Location</span>
-                        <span class="text-slate-800 font-semibold text-right">Hatfield, UK</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">What I work with</span>
-                <h2 class="text-4xl font-extrabold text-slate-900 mt-2">Technical Skills</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Skill 1 -->
-                <div class="p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition bg-slate-50/50">
-                    <div class="text-3xl mb-4">📊</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">Data Analysis & Python</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Python</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Pandas & NumPy</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Matplotlib</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Exploratory Data Analysis</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Statistical Analysis</span>
-                    </div>
-                </div>
-                
-                <!-- Skill 2 -->
-                <div class="p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition bg-slate-50/50">
-                    <div class="text-3xl mb-4">⚙️</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">Languages & Frameworks</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Java</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Spring Boot</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">REST APIs</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Apache Camel</span>
-                    </div>
-                </div>
-
-                <!-- Skill 3 -->
-                <div class="p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition bg-slate-50/50">
-                    <div class="text-3xl mb-4">☁️</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">Cloud & Infrastructure</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">AWS Lambda</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">AWS SNS & S3</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Kubernetes</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">MinIO</span>
-                    </div>
-                </div>
-                
-                <!-- Skill 4 -->
-                <div class="p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition bg-slate-50/50">
-                    <div class="text-3xl mb-4">🤖</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">AI & Data Processing</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">OpenAI Integration</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Prompt Engineering</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Gen-Eval-Opt Pattern</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Unstructured Data Parsing</span>
-                    </div>
-                </div>
-
-                <!-- Skill 5 -->
-                <div class="p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition bg-slate-50/50">
-                    <div class="text-3xl mb-4">📨</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">Messaging & Streaming</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Apache Kafka</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">RabbitMQ</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">Event-Driven Architecture</span>
-                    </div>
-                </div>
-
-                <!-- Skill 6 -->
-                <div class="p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition bg-slate-50/50">
-                    <div class="text-3xl mb-4">🗄️</div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">Databases</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">SQL (MySQL)</span>
-                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 font-medium shadow-sm">PostgreSQL</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-slate-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-16">
-                <span class="text-purple-600 font-bold tracking-wider uppercase text-sm">Where I've worked</span>
-                <h2 class="text-4xl font-extrabold text-slate-900 mt-2">Professional Experience</h2>
-            </div>
-            
-            <div class="relative pl-8 sm:pl-0">
-                <!-- Timeline Line -->
-                <div class="hidden sm:block absolute left-8 top-0 bottom-0 w-0.5 bg-slate-200"></div>
-
-                <!-- Accenture Experience -->
-                <div class="relative sm:pl-24 mb-16">
-                    <div class="hidden sm:block absolute left-[1.65rem] top-2 w-4 h-4 rounded-full border-4 border-white bg-blue-500 shadow-md"></div>
-                    
-                    <div class="mb-2 text-sm font-bold text-slate-500 tracking-wider">06/2024 — 08/2026</div>
-                    <h3 class="text-3xl font-extrabold text-slate-900 mb-1">Accenture, India</h3>
-                    <p class="text-lg text-blue-600 font-semibold mb-4">Research and Development Team</p>
-                    
-                    <div class="flex flex-wrap gap-3 mb-8">
-                        <span class="px-3 py-1 bg-slate-200 text-slate-700 rounded-full text-sm font-bold">Packaged App Development Analyst</span>
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-bold">⬆ Promoted December 2025</span>
-                    </div>
-
-                    <!-- UIMP Project -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-6 hover:shadow-md transition">
-                        <span class="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2 block">Enterprise Platform Development</span>
-                        <h4 class="text-lg font-bold text-slate-800 mb-4">▸ UIMP — Universal Integration Migration Platform (Any-to-Any)</h4>
-                        <ul class="space-y-3 text-slate-600 mb-6 list-disc pl-5">
-                            <li>Implemented a catalogue-governed, event-driven agentic platform that migrates any integration platform to any target at enterprise scale, spanning across <strong>150+ iPaaS platforms</strong>.</li>
-                            <li>Cut business-logic discrepancies (arity) by <strong>90-95%</strong> through structured data cataloguing and cross-platform data mapping.</li>
-                            <li>Scaled concurrent processing from <strong>10 to 1,000 simultaneous migrations</strong>.</li>
-                            <li>Led Data Plane architecture using PostgreSQL, RabbitMQ, and Apache Camel to persist transactions with validation and DLQ retries.</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-100">
-                            <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs font-semibold">Java</span>
-                            <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs font-semibold">Spring Boot</span>
-                            <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs font-semibold">RabbitMQ</span>
-                            <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs font-semibold">PostgreSQL</span>
-                            <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs font-semibold">Apache Camel</span>
-                        </div>
-                    </div>
-
-                    <!-- MARS Project -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm mb-6 hover:shadow-md transition">
-                        <span class="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2 block">AI Automation & Data Pipelines</span>
-                        <h4 class="text-lg font-bold text-slate-800 mb-4">▸ MARS — AI-Assisted Data Migration (MuleSoft to Azure AIS)</h4>
-                        <ul class="space-y-3 text-slate-600 mb-6 list-disc pl-5">
-                            <li>Developed AI-assisted solutions using OpenAI/ChatGPT to convert MuleSoft projects into Azure Integration Services (AIS) artifacts.</li>
-                            <li>Designed a <strong>Generator-Evaluator-Optimizer LLM framework</strong> that scored outputs against evaluation rubrics and refined them iteratively.</li>
-                            <li>Streamed large-scale data through processing stages (ingest, generate, evaluate, optimise, publish) via <strong>Apache Kafka</strong> for high throughput.</li>
-                            <li>Stored source inputs and generated versions in MinIO and deployed on Kubernetes for autoscaling.</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-100">
-                            <span class="px-2 py-1 bg-purple-50 text-purple-600 rounded text-xs font-semibold">OpenAI</span>
-                            <span class="px-2 py-1 bg-purple-50 text-purple-600 rounded text-xs font-semibold">Apache Kafka</span>
-                            <span class="px-2 py-1 bg-purple-50 text-purple-600 rounded text-xs font-semibold">Kubernetes</span>
-                            <span class="px-2 py-1 bg-purple-50 text-purple-600 rounded text-xs font-semibold">MinIO</span>
-                        </div>
-                    </div>
-
-                    <!-- IMA Project -->
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition">
-                        <span class="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2 block">Proof of Concept (PoC)</span>
-                        <h4 class="text-lg font-bold text-slate-800 mb-4">▸ IMA — TIBCO to Apache Camel Migration using OpenAI</h4>
-                        <ul class="space-y-3 text-slate-600 mb-6 list-disc pl-5">
-                            <li>Automated end-to-end migration from TIBCO to Apache Camel in a PoC, using OpenAI to generate route templates and transformation logic.</li>
-                            <li>Designed a serverless AWS Lambda microservices workflow, orchestrated with Amazon SNS, to parse, transform, validate, and package outputs.</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-100">
-                            <span class="px-2 py-1 bg-green-50 text-green-600 rounded text-xs font-semibold">AWS Lambda</span>
-                            <span class="px-2 py-1 bg-green-50 text-green-600 rounded text-xs font-semibold">Amazon SNS</span>
-                            <span class="px-2 py-1 bg-green-50 text-green-600 rounded text-xs font-semibold">Apache Camel</span>
-                            <span class="px-2 py-1 bg-green-50 text-green-600 rounded text-xs font-semibold">OpenAI</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-20 bg-white border-y border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">Academic background</span>
-                <h2 class="text-4xl font-extrabold text-slate-900 mt-2">Education</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden">
-                    <div class="absolute right-0 top-0 w-24 h-24 bg-blue-50 rounded-bl-full -z-10"></div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-2">MSc Data Science (with Placement)</h3>
-                        <p class="text-slate-500 font-medium mb-6">University of Hertfordshire, UK</p>
-                    </div>
-                    <div>
-                        <div class="text-4xl font-black text-blue-600 mb-1">09/2026 – 10/2028</div>
-                        <div class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Expected Graduation</div>
-                        <p class="text-slate-600 font-medium bg-slate-50 p-3 rounded-lg inline-block">Focus: Data Handling, Visualisation & Applied DS</p>
-                    </div>
-                </div>
-
-                <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition flex flex-col justify-between relative overflow-hidden">
-                    <div class="absolute right-0 top-0 w-24 h-24 bg-yellow-50 rounded-bl-full -z-10"></div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-2">B.Tech in Electronics & Comm.</h3>
-                        <p class="text-slate-500 font-medium mb-6">GITAM School of Technology, India</p>
-                    </div>
-                    <div>
-                        <div class="text-5xl font-black text-yellow-500 mb-1">9.71</div>
-                        <div class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">CGPA (First-Class Honours)</div>
-                        <p class="text-slate-600 font-medium bg-slate-50 p-3 rounded-lg inline-block">08/2020 – 05/2024 · 🌟 Gold Medallist</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements & Certifications -->
-    <section class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16">
-                <!-- Achievements -->
-                <div>
-                    <div class="mb-10">
-                        <span class="text-purple-600 font-bold tracking-wider uppercase text-sm">Recognition & honors</span>
-                        <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Achievements</h2>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="flex gap-4 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="text-4xl">🏅</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-slate-900 mb-1">Gold Medallist</h4>
-                                <p class="text-slate-600 text-sm">First Rank in the B.Tech programme at GITAM School of Technology.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="text-4xl">🎖️</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-slate-900 mb-1">NCC 'C' Certificate</h4>
-                                <p class="text-slate-600 text-sm">Ranked as Sergeant, demonstrating strong discipline and leadership.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="text-4xl">🚀</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-slate-900 mb-1">1st Prize — World Space Week</h4>
-                                <p class="text-slate-600 text-sm">Awarded First Prize during World Space Week 2017 for exceptional performance.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Certifications -->
-                <div>
-                    <div class="mb-10">
-                        <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">Continuous learning</span>
-                        <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Certifications</h2>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="flex gap-4 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-blue-600 rounded-xl text-xl shrink-0">📊</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-slate-900">Deloitte Data Analytics Job Simulation</h4>
-                                <p class="text-blue-600 font-semibold text-sm mb-2">Forage</p>
-                                <p class="text-slate-600 text-sm">Undertook practical tasks in data analysis and forensic technology.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="w-12 h-12 flex items-center justify-center bg-purple-100 text-purple-600 rounded-xl text-xl shrink-0">🤖</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-slate-900">AI Tools & ChatGPT Workshop</h4>
-                                <p class="text-purple-600 font-semibold text-sm mb-2">be10x</p>
-                                <p class="text-slate-600 text-sm">Demonstrated competencies in using AI to analyse data, write code, and debug.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="w-12 h-12 flex items-center justify-center bg-green-100 text-green-600 rounded-xl text-xl shrink-0">📈</div>
-                            <div>
-                                <h4 class="text-lg font-bold text-slate-900">Microsoft Excel Certification</h4>
-                                <p class="text-green-600 font-semibold text-sm mb-2">Skill Course</p>
-                                <p class="text-slate-600 text-sm">Completed a certified self-learning course in Microsoft Excel for data organisation and calculations.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-32 bg-white text-center">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span class="text-blue-600 font-bold tracking-wider uppercase text-sm block mb-4">Let's connect</span>
-            <h2 class="text-5xl lg:text-7xl font-extrabold text-slate-900 mb-6 leading-tight">
-                Let's build<br><span class="gradient-text">something great</span>
-            </h2>
-            <p class="text-lg text-slate-600 mb-12 max-w-xl mx-auto">
-                Open to technical placements, data science, and software engineering opportunities. Always happy to discuss technical challenges.
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero" style="padding-top: 2rem; border-bottom: none;">
+            <div style="margin-bottom: -1rem;"><span class="tag">Available for Placement Year</span></div>
+            <h1>Naga Sai Sneha Yanamala</h1>
+            <div class="hero-role">MSc Data Science Student & Software Engineer</div>
+            <p class="hero-summary">
+                MSc Data Science student at the University of Hertfordshire with 2+ years of enterprise R&D experience at Accenture building event-driven platforms, streaming data pipelines, and AI-assisted automation systems. Bringing a rigorous mathematical background and hands-on technical expertise in Python, Java, Spring Boot, Kafka, and cloud infrastructure.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="mailto:snehayanamala1@gmail.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold shadow-lg hover:bg-slate-800 transition">
-                    <span>✉</span> snehayanamala1@gmail.com
+            
+            <div class="hero-details">
+                <div class="detail-item">
+                    <span class="detail-label">Degree</span>
+                    <span class="detail-value">MSc Data Science (UK)</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Placement</span>
+                    <span class="detail-value" style="color: var(--accent);">Eligible (2026–2028)</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Core Stack</span>
+                    <span class="detail-value">Python · Java · Kafka · AWS</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Location</span>
+                    <span class="detail-value">Hatfield, UK</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section id="skills">
+            <div class="section-header">
+                <h2 class="section-title">Technical Skills</h2>
+            </div>
+            <div class="grid-3">
+                <div class="skill-group">
+                    <h3>Data Analysis & Python</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span><span class="tag">Pandas & NumPy</span><span class="tag">Matplotlib</span><span class="tag">Exploratory Data Analysis</span><span class="tag">Statistical Analysis</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Languages & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">Apache Camel</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Cloud & Infrastructure</h3>
+                    <div class="skill-tags">
+                        <span class="tag">AWS Lambda</span><span class="tag">AWS SNS & S3</span><span class="tag">Kubernetes</span><span class="tag">MinIO</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>AI & Data Processing</h3>
+                    <div class="skill-tags">
+                        <span class="tag">OpenAI Integration</span><span class="tag">Prompt Engineering</span><span class="tag">Gen-Eval-Opt Pattern</span><span class="tag">Unstructured Data Parsing</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Messaging & Streaming</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Apache Kafka</span><span class="tag">RabbitMQ</span><span class="tag">Event-Driven Architecture</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="tag">SQL (MySQL)</span><span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section id="experience">
+            <div class="section-header">
+                <h2 class="section-title">Professional Experience</h2>
+            </div>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-company">Accenture, India</div>
+                        <div class="job-title">Packaged App Development Analyst (R&D Team)</div>
+                    </div>
+                    <div class="job-meta">
+                        06/2024 — 08/2026<br>
+                        <span style="color: var(--accent);">Promoted December 2025</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Enterprise Platform Development</div>
+                    <div class="project-title">UIMP — Universal Integration Migration Platform (Any-to-Any)</div>
+                    <ul class="project-bullets">
+                        <li>Implemented a catalogue-governed, event-driven agentic platform that migrates any integration platform to any target at enterprise scale, spanning across 150+ iPaaS platforms.</li>
+                        <li>Cut business-logic discrepancies (arity) by 90-95% through structured data cataloguing and cross-platform data mapping.</li>
+                        <li>Scaled concurrent processing from 10 to 1,000 simultaneous migrations.</li>
+                        <li>Led Data Plane architecture using PostgreSQL, RabbitMQ, and Apache Camel to persist transactions with validation and DLQ retries.</li>
+                    </ul>
+                    <div class="skill-tags">
+                        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">RabbitMQ</span><span class="tag">PostgreSQL</span><span class="tag">Apache Camel</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">AI Automation & Data Pipelines</div>
+                    <div class="project-title">MARS — AI-Assisted Data Migration (MuleSoft to Azure AIS)</div>
+                    <ul class="project-bullets">
+                        <li>Developed AI-assisted solutions using OpenAI/ChatGPT to convert MuleSoft projects into Azure Integration Services (AIS) artifacts.</li>
+                        <li>Designed a Generator-Evaluator-Optimizer LLM framework that scored outputs against evaluation rubrics and refined them iteratively.</li>
+                        <li>Streamed large-scale data through processing stages (ingest, generate, evaluate, optimise, publish) via Apache Kafka for high throughput.</li>
+                        <li>Stored source inputs and generated versions in MinIO and deployed on Kubernetes for autoscaling.</li>
+                    </ul>
+                    <div class="skill-tags">
+                        <span class="tag">OpenAI</span><span class="tag">Apache Kafka</span><span class="tag">Kubernetes</span><span class="tag">MinIO</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Proof of Concept (PoC)</div>
+                    <div class="project-title">IMA — TIBCO to Apache Camel Migration using OpenAI</div>
+                    <ul class="project-bullets">
+                        <li>Automated end-to-end migration from TIBCO to Apache Camel in a PoC, using OpenAI to generate route templates and transformation logic.</li>
+                        <li>Designed a serverless AWS Lambda microservices workflow, orchestrated with Amazon SNS, to parse, transform, validate, and package outputs.</li>
+                    </ul>
+                    <div class="skill-tags">
+                        <span class="tag">AWS Lambda</span><span class="tag">Amazon SNS</span><span class="tag">Apache Camel</span><span class="tag">OpenAI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+            </div>
+            <div class="grid-2">
+                <div class="list-card">
+                    <h3>MSc Data Science (with Placement)</h3>
+                    <div class="subtitle">University of Hertfordshire, UK</div>
+                    <div class="desc">Focus: Data Handling, Visualisation & Applied DS</div>
+                    <div class="meta">09/2026 – 10/2028 (Expected)</div>
+                </div>
+                <div class="list-card">
+                    <h3>B.Tech in Electronics & Comm.</h3>
+                    <div class="subtitle">GITAM School of Technology, India</div>
+                    <div class="desc">First-Class Honours · Gold Medallist (9.71 CGPA)</div>
+                    <div class="meta">08/2020 – 05/2024</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements -->
+        <section id="achievements">
+            <div class="section-header">
+                <h2 class="section-title">Achievements</h2>
+            </div>
+            <div class="grid-3">
+                <div class="list-card">
+                    <h3>Gold Medallist</h3>
+                    <div class="desc mt-2">First Rank in the B.Tech programme at GITAM School of Technology.</div>
+                </div>
+                <div class="list-card">
+                    <h3>NCC 'C' Certificate</h3>
+                    <div class="desc mt-2">Ranked as Sergeant, demonstrating strong discipline and leadership.</div>
+                </div>
+                <div class="list-card">
+                    <h3>1st Prize — World Space Week</h3>
+                    <div class="desc mt-2">Awarded First Prize during World Space Week 2017 for exceptional performance.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section id="certifications">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+            </div>
+            <div class="grid-3">
+                <div class="list-card">
+                    <h3>Deloitte Data Analytics Job Simulation</h3>
+                    <div class="subtitle">Forage</div>
+                    <div class="desc">Undertook practical tasks in data analysis and forensic technology.</div>
+                </div>
+                <div class="list-card">
+                    <h3>AI Tools & ChatGPT Workshop</h3>
+                    <div class="subtitle">be10x</div>
+                    <div class="desc">Demonstrated competencies in using AI to analyse data, write code, and debug.</div>
+                </div>
+                <div class="list-card">
+                    <h3>Microsoft Excel Certification</h3>
+                    <div class="subtitle">Skill Course</div>
+                    <div class="desc">Completed a certified self-learning course in Microsoft Excel for data organisation and calculations.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="section-header">
+                <h2 class="section-title">Contact</h2>
+                <p class="hero-summary">Open to technical placements, data science, and software engineering opportunities.</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:snehayanamala1@gmail.com">
+                    ✉️ snehayanamala1@gmail.com
                 </a>
-                <a href="https://www.linkedin.com/in/karanam-keerthana-sharma-845048252/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold shadow-lg hover:bg-blue-700 transition">
-                    <span class="font-bold bg-white text-blue-600 px-1 rounded text-xs">in</span> LinkedIn
+                <a href="https://www.linkedin.com/in/karanam-keerthana-sharma-845048252/" target="_blank" rel="noopener noreferrer">
+                    <span style="font-weight: 800; color: #0077b5;">in</span> LinkedIn
                 </a>
-                <a href="tel:+447384887018" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-100 text-slate-900 border border-slate-200 rounded-xl font-semibold hover:bg-slate-200 transition">
-                    <span>📞</span> +44 7384887018
+                <a href="tel:+447384887018">
+                    📞 +44 7384887018
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="py-8 bg-slate-50 border-t border-slate-200 text-center text-slate-500 font-medium">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <span>© 2026 Naga Sai Sneha Yanamala</span>
-            <span>MSc Data Science · Software Engineering</span>
-        </div>
+    </div>
+
+    <footer>
+        © 2026 Naga Sai Sneha Yanamala.
     </footer>
 
 </body>
