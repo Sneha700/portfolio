@@ -1,1014 +1,398 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Naga Sai Sneha Yanamala — MSc Data Science & Software Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<title>Naga Sai Sneha Yanamala — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  /* ── DARK THEME (default) ── */
-  :root[data-theme="dark"] {
-    --bg: #0c1219;
-    --surface: #131c26;
-    --card: #18222e;
-    --border: #243240;
-    --border-soft: #1d2935;
-    --text: #e8edf2;
-    --text-muted: #8a9aa8;
-    --accent: #4a90c8;
-    --accent-soft: rgba(74, 144, 200, 0.12);
-    --accent-strong: #6ba8d9;
-    --highlight: #c9a96e;
-    --highlight-soft: rgba(201, 169, 110, 0.12);
-    --shadow: 0 4px 20px rgba(0,0,0,0.3);
+  :root {
+    --bg-color: #0b0f19;
+    --surface: #151b2b;
+    --surface-hover: #1e2638;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --primary: #8b5cf6;
+    --primary-glow: rgba(139, 92, 246, 0.4);
+    --secondary: #ec4899;
+    --border: #334155;
   }
 
-  /* ── LIGHT THEME ── */
-  :root[data-theme="light"] {
-    --bg: #f8f6f1;
-    --surface: #ffffff;
-    --card: #ffffff;
-    --border: #d9d4ca;
-    --border-soft: #e8e3d8;
-    --text: #1c2530;
-    --text-muted: #5a6878;
-    --accent: #1e5a8a;
-    --accent-soft: rgba(30, 90, 138, 0.08);
-    --accent-strong: #154770;
-    --highlight: #8b6914;
-    --highlight-soft: rgba(139, 105, 20, 0.1);
-    --shadow: 0 2px 12px rgba(28,37,48,0.08);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color .3s ease, color .3s ease;
   }
 
-  h1, h2, h3, h4 {
-    font-family: 'Lora', Georgia, serif;
-    font-weight: 600;
-    letter-spacing: -0.5px;
+  /* Typography */
+  h1, h2, h3 {
+    font-weight: 800;
     line-height: 1.2;
   }
+  
+  .gradient-text {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-  /* ── NAV ── */
+  /* Navigation */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 60px;
-    background: color-mix(in srgb, var(--bg) 90%, transparent);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-soft);
-    transition: background-color .3s ease, border-color .3s ease;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(11, 15, 25, 0.8);
+    border-bottom: 1px solid var(--border);
   }
-  .nav-logo {
-    font-family: 'Lora', serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: var(--accent);
-    letter-spacing: -0.5px;
+
+  .nav-content {
+    display: flex;
+    gap: 2rem;
   }
-  .nav-right { display: flex; align-items: center; gap: 32px; }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a {
-    color: var(--text-muted);
+
+  .nav-content a {
+    color: var(--text-main);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-
-  /* Theme toggle */
-  .theme-toggle {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text);
-    transition: all .25s ease;
-    font-size: 16px;
-  }
-  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); transform: rotate(15deg); }
-  .theme-toggle .sun { display: none; }
-  :root[data-theme="light"] .theme-toggle .sun { display: inline; }
-  :root[data-theme="light"] .theme-toggle .moon { display: none; }
-
-  /* ── SECTIONS ── */
-  section { position: relative; }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    align-items: center;
-    padding: 130px 60px 80px;
-    gap: 60px;
-  }
-  .hero-tag {
-    display: inline-block;
-    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
-    padding: 6px 14px;
-    border-radius: 4px;
-    margin-bottom: 28px;
-    animation: fadeUp .6s ease both;
-  }
-  .hero-name {
-    font-family: 'Lora', serif;
-    font-weight: 700;
-    font-size: clamp(44px, 5.5vw, 76px);
-    line-height: 1.05;
-    letter-spacing: -2px;
-    animation: fadeUp .6s .1s ease both;
-  }
-  .hero-name em {
-    color: var(--accent);
-    font-style: italic;
-    font-weight: 600;
-  }
-  .hero-role {
-    font-size: 17px;
-    color: var(--text-muted);
-    margin-top: 18px;
-    font-weight: 400;
-    animation: fadeUp .6s .2s ease both;
-  }
-  .hero-summary {
-    margin-top: 26px;
-    font-size: 16px;
-    color: var(--text-muted);
-    max-width: 540px;
-    line-height: 1.75;
-    animation: fadeUp .6s .3s ease both;
-  }
-  .hero-cta {
-    display: flex; gap: 14px; margin-top: 36px;
-    animation: fadeUp .6s .4s ease both;
-  }
-  .btn {
-    padding: 13px 26px;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all .25s ease;
-    letter-spacing: .3px;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-    border: 1px solid var(--accent);
-  }
-  .btn-primary:hover { background: var(--accent-strong); transform: translateY(-2px); box-shadow: var(--shadow); }
-  .btn-ghost {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-  }
-  .btn-ghost:hover { background: var(--accent-soft); transform: translateY(-2px); }
-
-  /* hero right — info card */
-  .hero-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    animation: fadeUp .6s .2s ease both;
-  }
-  .hero-card-header {
-    padding: 18px 24px;
-    border-bottom: 1px solid var(--border-soft);
-    display: flex; align-items: center; gap: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: var(--text-muted);
-  }
-  .header-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-  .hero-card-body { padding: 24px; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
-  .info-row {
-    display: flex; justify-content: space-between;
-    padding: 11px 0;
-    border-bottom: 1px dashed var(--border-soft);
-  }
-  .info-row:last-child { border-bottom: none; }
-  .info-key { color: var(--text-muted); }
-  .info-val { color: var(--text); font-weight: 500; }
-  .info-val.highlight { color: var(--accent); }
-  .info-val.gold { color: var(--highlight); }
-
-  /* ── SECTIONS GENERAL ── */
-  .section-pad {
-    padding: 100px 60px;
-    border-top: 1px solid var(--border-soft);
-  }
-  .section-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-  }
-  .section-title {
-    font-size: clamp(32px, 4vw, 50px);
-    margin-bottom: 60px;
-    color: var(--text);
-  }
-  .section-title em { color: var(--accent); font-style: italic; }
-
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-  }
-  .skill-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 28px;
-    transition: all .25s ease;
-  }
-  .skill-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow);
-  }
-  .skill-card-icon {
-    font-size: 24px;
-    margin-bottom: 14px;
-    width: 44px; height: 44px;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--accent-soft);
-    border-radius: 8px;
-  }
-  .skill-card-title {
-    font-family: 'Lora', serif;
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 12px;
-    color: var(--text);
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    font-size: 12px;
-    font-weight: 500;
-    padding: 4px 11px;
-    border-radius: 3px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  }
-
-  /* ── EXPERIENCE ── */
-  .timeline { position: relative; padding-left: 38px; }
-  .timeline::before {
-    content: '';
-    position: absolute; left: 0; top: 8px; bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--accent), var(--border));
-  }
-  .timeline-item { position: relative; margin-bottom: 56px; }
-  .timeline-dot {
-    position: absolute;
-    left: -44px; top: 6px;
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 3px solid var(--bg);
-    box-shadow: 0 0 0 2px var(--accent);
-  }
-  .timeline-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: .5px;
-    margin-bottom: 8px;
-  }
-  .timeline-role {
-    font-family: 'Lora', serif;
-    font-weight: 600;
-    font-size: 24px;
-    margin-bottom: 4px;
-    color: var(--text);
-  }
-  .timeline-company {
-    color: var(--accent);
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
-  .badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 3px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    margin-right: 8px;
-    letter-spacing: .3px;
-  }
-  .badge-promo {
-    background: var(--highlight-soft);
-    color: var(--highlight);
-    border: 1px solid color-mix(in srgb, var(--highlight) 35%, transparent);
-  }
-  .badge-lead {
-    background: var(--accent-soft);
-    color: var(--accent);
-    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-  }
-  .project-block {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 26px;
-    margin-bottom: 16px;
-    transition: border-color .2s;
-  }
-  .project-block:hover { border-color: var(--accent); }
-  .project-role-label {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .5px;
-    color: var(--text-muted);
-    background: var(--accent-soft);
-    padding: 4px 10px;
-    border-radius: 3px;
-    margin-bottom: 12px;
-    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  }
-  .project-title {
-    font-family: 'Lora', serif;
-    font-weight: 600;
-    font-size: 17px;
-    color: var(--accent);
-    margin-bottom: 14px;
-  }
-  .project-bullets { list-style: none; }
-  .project-bullets li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 10px;
-    font-size: 14.5px;
-    color: var(--text-muted);
-    line-height: 1.7;
-  }
-  .project-bullets li::before {
-    content: '▸';
-    position: absolute; left: 0;
-    color: var(--highlight);
-    font-size: 13px;
-    top: 1px;
-  }
-  .project-bullets li strong { color: var(--text); font-weight: 600; }
-  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-soft); }
-  .stack-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    padding: 3px 9px;
-    border-radius: 3px;
-    background: var(--highlight-soft);
-    color: var(--highlight);
-    border: 1px solid color-mix(in srgb, var(--highlight) 25%, transparent);
-  }
-
-  /* ── EDUCATION ── */
-  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-  .edu-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 28px;
-    transition: all .25s ease;
-  }
-  .edu-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow); }
-  .edu-degree {
-    font-family: 'Lora', serif;
-    font-weight: 600;
-    font-size: 19px;
-    margin-bottom: 6px;
-    color: var(--text);
-  }
-  .edu-institution { color: var(--text-muted); font-size: 14px; margin-bottom: 14px; }
-  .edu-score {
-    font-size: 36px;
-    font-family: 'Lora', serif;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .edu-score-label {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 4px;
+    font-size: 0.95rem;
+    transition: color 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
-  .edu-year {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 14px;
+
+  .nav-content a:hover {
+    color: var(--primary);
   }
 
-  /* ── ACHIEVEMENTS ── */
-  .achieve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .achieve-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 28px;
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    transition: all .25s ease;
+    padding: 0 2rem;
     position: relative;
-    overflow: hidden;
   }
-  .achieve-card::before {
+  
+  .hero::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--highlight));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .3s ease;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0,0,0,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
   }
-  .achieve-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow);
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
   }
-  .achieve-card:hover::before { transform: scaleX(1); }
-  .achieve-icon {
-    font-size: 36px;
-    margin-bottom: 14px;
+
+  .hero .subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--text-muted);
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn {
     display: inline-block;
-  }
-  .achieve-title {
-    font-family: 'Lora', serif;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
     font-weight: 600;
-    font-size: 18px;
-    color: var(--text);
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
-  .achieve-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  /* ── CERTIFICATIONS ── */
-  .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .cert-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 28px;
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    transition: all .25s ease;
-  }
-  .cert-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow); }
-  .cert-icon {
-    font-size: 22px;
-    width: 52px; height: 52px;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--accent-soft);
-    color: var(--accent);
-    border-radius: 8px;
-    flex-shrink: 0;
-  }
-  .cert-content { flex: 1; }
-  .cert-title {
-    font-family: 'Lora', serif;
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 4px;
-    color: var(--text);
-  }
-  .cert-issuer { color: var(--accent); font-size: 14px; font-weight: 500; margin-bottom: 8px; }
-  .cert-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.6; }
-  .cert-date {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11.5px;
-    color: var(--text-muted);
-    letter-spacing: .5px;
-  }
-  .cert-skills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-
-  /* ── CONTACT ── */
-  #contact { text-align: center; }
-  .contact-title {
-    font-size: clamp(36px, 5.5vw, 64px);
-    line-height: 1.1;
-    margin-bottom: 20px;
-    color: var(--text);
-  }
-  .contact-title em { color: var(--accent); font-style: italic; }
-  .contact-sub {
-    color: var(--text-muted);
-    max-width: 540px;
-    margin: 0 auto 40px;
-    font-size: 16px;
-  }
-  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-  .contact-link {
-    display: flex; align-items: center; gap: 10px;
-    padding: 14px 26px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--text);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all .25s ease;
-    background: var(--card);
+    transition: all 0.3s;
+    font-size: 1.1rem;
   }
-  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow); }
 
-  /* ── FOOTER ── */
-  footer {
-    padding: 26px 60px;
-    border-top: 1px solid var(--border-soft);
-    display: flex; justify-content: space-between; align-items: center;
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    box-shadow: 0 10px 20px -10px var(--primary);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px -10px var(--primary);
+  }
+
+  /* Section Styles */
+  .section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  /* Grid Layouts */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+  }
+
+  /* Experience Cards (List styling) */
+  .timeline-card {
+    background: var(--surface);
+    border-left: 4px solid var(--primary);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .timeline-date {
+    font-family: 'Fira Code', monospace;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-company {
     color: var(--text-muted);
-    font-size: 13px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
   }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    body { font-size: 14.5px; }
-
-    nav { padding: 12px 18px; }
-    .nav-logo { font-size: 19px; }
-    .nav-links { display: none; }
-    .nav-right { gap: 12px; }
-    .theme-toggle { width: 34px; height: 34px; font-size: 14px; }
-
-    /* HERO */
-    #hero {
-      grid-template-columns: 1fr;
-      padding: 90px 18px 40px;
-      gap: 28px;
-      min-height: auto;
-    }
-    .hero-tag { font-size: 10.5px; padding: 5px 11px; margin-bottom: 18px; letter-spacing: 1.2px; }
-    .hero-name { font-size: clamp(36px, 11vw, 56px); letter-spacing: -1.2px; line-height: 1.05; }
-    .hero-role { font-size: 14.5px; margin-top: 14px; }
-    .hero-summary { font-size: 14.5px; margin-top: 18px; line-height: 1.65; }
-    .hero-cta { gap: 10px; margin-top: 24px; flex-wrap: wrap; }
-    .btn { padding: 11px 20px; font-size: 13px; }
-
-    .hero-card-header { padding: 14px 16px; font-size: 12px; }
-    .hero-card-body { padding: 16px; font-size: 12px; }
-    .info-row { padding: 9px 0; flex-wrap: wrap; gap: 4px; }
-    .info-key { font-size: 11.5px; }
-    .info-val { font-size: 12px; text-align: right; }
-
-    /* SECTIONS */
-    .section-pad { padding: 50px 18px; }
-    .section-label { font-size: 11px; letter-spacing: 2px; margin-bottom: 10px; }
-    .section-title { font-size: clamp(26px, 7vw, 38px); margin-bottom: 32px; letter-spacing: -1px; }
-
-    /* GRIDS */
-    .skills-grid, .edu-grid, .cert-grid, .achieve-grid {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    /* SKILLS */
-    .skill-card { padding: 22px; }
-    .skill-card-icon { width: 40px; height: 40px; font-size: 20px; margin-bottom: 12px; }
-    .skill-card-title { font-size: 16px; margin-bottom: 10px; }
-    .tag { font-size: 11.5px; padding: 3px 9px; }
-
-    /* EXPERIENCE */
-    .timeline { padding-left: 24px; }
-    .timeline::before { left: 0; }
-    .timeline-dot { left: -29px; width: 10px; height: 10px; }
-    .timeline-item { margin-bottom: 38px; }
-    .timeline-meta { font-size: 11px; }
-    .timeline-role { font-size: 19px; line-height: 1.3; }
-    .timeline-company { font-size: 13.5px; line-height: 1.5; margin-bottom: 14px; }
-    .badge { font-size: 11px; padding: 3px 10px; margin-bottom: 12px; }
-    .project-block { padding: 18px; }
-    .project-title { font-size: 15px; margin-bottom: 12px; line-height: 1.4; }
-    .project-bullets li { font-size: 13.5px; padding-left: 16px; margin-bottom: 9px; line-height: 1.6; }
-    .project-bullets li::before { font-size: 11px; }
-    .project-stack { gap: 5px; margin-top: 12px; padding-top: 12px; }
-    .stack-tag { font-size: 10.5px; padding: 2px 7px; }
-
-    /* EDUCATION */
-    .edu-card { padding: 22px; }
-    .edu-degree { font-size: 17px; }
-    .edu-institution { font-size: 13px; margin-bottom: 12px; }
-    .edu-score { font-size: 30px; }
-    .edu-score-label { font-size: 11px; }
-
-    /* ACHIEVEMENTS */
-    .achieve-card { padding: 22px 18px; }
-    .achieve-icon { font-size: 30px; margin-bottom: 10px; }
-    .achieve-title { font-size: 16px; margin-bottom: 8px; }
-    .achieve-desc { font-size: 13.5px; line-height: 1.55; }
-
-    /* CERTIFICATIONS */
-    .cert-card { padding: 20px; gap: 14px; flex-direction: column; align-items: flex-start; }
-    .cert-icon { width: 44px; height: 44px; font-size: 18px; }
-    .cert-title { font-size: 16px; }
-    .cert-desc { font-size: 13.5px; }
-
-    /* CONTACT */
-    .contact-title { font-size: clamp(28px, 8.5vw, 48px); letter-spacing: -1.2px; }
-    .contact-sub { font-size: 14.5px; margin-bottom: 28px; padding: 0 6px; }
-    .contact-links { gap: 10px; flex-direction: column; align-items: stretch; padding: 0 8px; }
-    .contact-link {
-      padding: 13px 18px;
-      font-size: 13px;
-      justify-content: center;
-      word-break: break-word;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 18px;
-      flex-direction: column;
-      gap: 6px;
-      text-align: center;
-      font-size: 12px;
-    }
+  .timeline-card ul {
+    padding-left: 1.2rem;
+    color: var(--text-muted);
   }
 
-  @media (max-width: 400px) {
-    .hero-name { font-size: 34px; }
-    .section-pad { padding: 42px 16px; }
-    nav { padding: 10px 14px; }
-    #hero { padding: 80px 16px 36px; }
+  .timeline-card li {
+    margin-bottom: 0.8rem;
+  }
+
+  /* Tags */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .tag {
+    background: rgba(139, 92, 246, 0.1);
+    color: #c4b5fd;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-family: 'Fira Code', monospace;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  /* Contact Section */
+  .contact-wrapper {
+    text-align: center;
+    background: var(--surface);
+    padding: 4rem 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 600;
+  }
+
+  .contact-item:hover {
+    border-color: var(--secondary);
+    background: rgba(236, 72, 153, 0.05);
+    transform: translateY(-2px);
+  }
+
+  footer {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem; }
+    .nav-content { gap: 1rem; }
+    .nav-content a { font-size: 0.8rem; }
+    .section { padding: 4rem 1.5rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">N · S</div>
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-      <span class="moon">🌙</span>
-      <span class="sun">☀️</span>
-    </button>
+  <div class="nav-content">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-left">
-    <div class="hero-tag">Available for Placement Year</div>
-    <h1 class="hero-name">Naga Sai<br/>Sneha<br/>Yanamala</h1>
-    <p class="hero-role">MSc Data Science Student &amp; Software Engineer</p>
-    <p class="hero-summary">
-      MSc Data Science student at the University of Hertfordshire with 2+ years of enterprise 
-      R&D experience at Accenture building event-driven platforms, streaming data pipelines, 
-      and AI-assisted automation systems. Bringing a rigorous mathematical background 
-      and hands-on technical expertise in Python, Java, Spring Boot, Kafka, and cloud infrastructure.
+<section class="hero" id="about">
+  <h1>Naga Sai <br/><span class="gradient-text">Sneha Yanamala</span></h1>
+  <p class="subtitle">Software Engineer & Data Science Student</p>
+  <p style="max-width: 600px; color: var(--text-muted); margin-bottom: 2rem;">
+    MSc Data Science student with enterprise R&D experience building event-driven platforms, streaming data pipelines, and AI-assisted automation systems.
+  </p>
+  <a href="#contact" class="btn btn-primary">Get in Touch</a>
+</section>
+
+<section class="section" id="skills">
+  <h2 class="section-title">Technical Expertise</h2>
+  <div class="grid">
+    <div class="card">
+      <h3 style="margin-bottom: 1rem; color: var(--primary);">Languages & Frameworks</h3>
+      <p style="color: var(--text-muted);">Python, Java, Spring Boot, REST APIs, Apache Camel</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom: 1rem; color: var(--secondary);">Data & AI</h3>
+      <p style="color: var(--text-muted);">Pandas, NumPy, OpenAI Integration, Prompt Engineering, EDA, Statistical Analysis</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom: 1rem; color: var(--primary);">Cloud & Infrastructure</h3>
+      <p style="color: var(--text-muted);">AWS (Lambda, SNS, S3), Kubernetes, MinIO, Apache Kafka, RabbitMQ</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom: 1rem; color: var(--secondary);">Databases</h3>
+      <p style="color: var(--text-muted);">SQL (MySQL), PostgreSQL</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <h2 class="section-title">Professional Experience</h2>
+  
+  <div class="timeline-card">
+    <div class="timeline-date">06/2024 — Present</div>
+    <h3 class="timeline-title">Packaged App Development Analyst</h3>
+    <div class="timeline-company">Accenture, India (R&D Team)</div>
+    <ul>
+      <li>Implemented a catalogue-governed, event-driven agentic platform that migrates integration platforms at enterprise scale across 150+ iPaaS systems.</li>
+      <li>Cut business-logic discrepancies by 90-95% through structured data cataloguing and cross-platform data mapping.</li>
+      <li>Developed AI-assisted solutions using OpenAI to convert MuleSoft projects into Azure Integration Services (AIS) artifacts.</li>
+      <li>Designed a Generator-Evaluator-Optimizer LLM framework that scored outputs against evaluation rubrics and refined them iteratively.</li>
+    </ul>
+    <div class="tags">
+      <span class="tag">Java</span>
+      <span class="tag">Spring Boot</span>
+      <span class="tag">OpenAI</span>
+      <span class="tag">Kafka</span>
+      <span class="tag">PostgreSQL</span>
+    </div>
+  </div>
+
+</section>
+
+<section class="section" id="education">
+  <h2 class="section-title">Education</h2>
+  <div class="grid">
+    <div class="card">
+      <h3 style="margin-bottom: 0.5rem;">MSc Data Science</h3>
+      <p style="color: var(--primary); font-weight: 600;">University of Hertfordshire, UK</p>
+      <p style="color: var(--text-muted); margin-top: 1rem; font-family: 'Fira Code', monospace; font-size: 0.9rem;">2026 – 2028</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom: 0.5rem;">B.Tech in Electronics & Comm.</h3>
+      <p style="color: var(--secondary); font-weight: 600;">GITAM School of Technology, India</p>
+      <p style="color: var(--text-muted); margin-top: 1rem; font-family: 'Fira Code', monospace; font-size: 0.9rem;">2020 – 2024 • Gold Medallist (9.71 CGPA)</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="contact-wrapper">
+    <h2 class="section-title" style="margin-bottom: 1rem;">Let's Connect</h2>
+    <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">
+      I'm currently looking for new opportunities in Software Engineering and Data Science. My inbox is always open!
     </p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary">Get in touch</a>
-      <a href="#experience" class="btn btn-ghost">View work</a>
-    </div>
-  </div>
-
-  <div class="hero-card">
-    <div class="hero-card-header">
-      <span class="header-dot"></span>
-      <span>Profile Summary</span>
-    </div>
-    <div class="hero-card-body">
-      <div class="info-row"><span class="info-key">Degree</span><span class="info-val">MSc Data Science (UK)</span></div>
-      <div class="info-row"><span class="info-key">Placement</span><span class="info-val gold">Eligible (2026–2028)</span></div>
-      <div class="info-row"><span class="info-key">Core Stack</span><span class="info-val">Python · Java · Kafka · AWS</span></div>
-      <div class="info-row"><span class="info-key">Speciality</span><span class="info-val">Data Pipelines &amp; Systems</span></div>
-      <div class="info-row"><span class="info-key">Location</span><span class="info-val">Hatfield, UK</span></div>
+    
+    <div class="contact-links">
+      <a href="mailto:snehayanamala1@gmail.com" class="contact-item">
+        ✉️ snehayanamala1@gmail.com
+      </a>
+      <a href="tel:+447384887018" class="contact-item">
+        📱 +44 7384887018
+      </a>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills" class="section-pad">
-  <div class="section-label">What I work with</div>
-  <h2 class="section-title reveal">Technical <em>Skills</em></h2>
-
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <div class="skill-card-icon">📊</div>
-      <div class="skill-card-title">Data Analysis &amp; Python</div>
-      <div class="skill-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Pandas &amp; NumPy</span>
-        <span class="tag">Matplotlib</span>
-        <span class="tag">Exploratory Data Analysis</span>
-        <span class="tag">Statistical Analysis</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-card-icon">⚙️</div>
-      <div class="skill-card-title">Languages &amp; Frameworks</div>
-      <div class="skill-tags">
-        <span class="tag">Java</span>
-        <span class="tag">Spring Boot</span>
-        <span class="tag">REST APIs</span>
-        <span class="tag">Apache Camel</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-card-icon">☁️</div>
-      <div class="skill-card-title">Cloud &amp; Infrastructure</div>
-      <div class="skill-tags">
-        <span class="tag">AWS Lambda</span>
-        <span class="tag">AWS SNS &amp; S3</span>
-        <span class="tag">Kubernetes</span>
-        <span class="tag">MinIO</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-card-icon">🤖</div>
-      <div class="skill-card-title">AI &amp; Data Processing</div>
-      <div class="skill-tags">
-        <span class="tag">OpenAI Integration</span>
-        <span class="tag">Prompt Engineering</span>
-        <span class="tag">Gen-Eval-Opt Pattern</span>
-        <span class="tag">Unstructured Data Parsing</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-card-icon">📨</div>
-      <div class="skill-card-title">Messaging &amp; Streaming</div>
-      <div class="skill-tags">
-        <span class="tag">Apache Kafka</span>
-        <span class="tag">RabbitMQ</span>
-        <span class="tag">Event-Driven Architecture</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-card-icon">🗄️</div>
-      <div class="skill-card-title">Databases</div>
-      <div class="skill-tags">
-        <span class="tag">SQL (MySQL)</span>
-        <span class="tag">PostgreSQL</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience" class="section-pad">
-  <div class="section-label">Where I've worked</div>
-  <h2 class="section-title reveal">Professional <em>Experience</em></h2>
-
-  <div class="timeline">
-
-    <!-- ACCENTURE -->
-    <div class="timeline-item reveal">
-      <div class="timeline-dot"></div>
-      <div class="timeline-meta">06/2024 — 08/2026</div>
-      <div class="timeline-role">Accenture, India</div>
-      <div class="timeline-company">Research and Development Team</div>
-      <span class="badge badge-lead">Packaged App Development Analyst</span>
-      <span class="badge badge-promo">⬆ Promoted December 2025</span>
-
-      <!-- UIMP Project -->
-      <div class="project-block">
-        <span class="project-role-label">ENTERPRISE PLATFORM DEVELOPMENT</span>
-        <div class="project-title">▸ UIMP — Universal Integration Migration Platform (Any-to-Any)</div>
-        <ul class="project-bullets">
-          <li>Implemented a catalogue-governed, event-driven agentic platform that migrates any integration platform to any target at enterprise scale, spanning across <strong>150+ iPaaS platforms</strong>.</li>
-          <li>Cut business-logic discrepancies (arity) by <strong>90-95%</strong> through structured data cataloguing and cross-platform data mapping.</li>
-          <li>Scaled concurrent processing from <strong>10 to 1,000 simultaneous migrations</strong>.</li>
-          <li>Led Data Plane architecture using PostgreSQL, RabbitMQ, and Apache Camel to persist transactions with validation and DLQ retries.</li>
-        </ul>
-        <div class="project-stack">
-          <span class="stack-tag">Java</span>
-          <span class="stack-tag">Spring Boot</span>
-          <span class="stack-tag">RabbitMQ</span>
-          <span class="stack-tag">PostgreSQL</span>
-          <span class="stack-tag">Apache Camel</span>
-        </div>
-      </div>
-
-      <!-- MARS Project -->
-      <div class="project-block">
-        <span class="project-role-label">AI AUTOMATION &amp; DATA PIPELINES</span>
-        <div class="project-title">▸ MARS — AI-Assisted Data Migration (MuleSoft to Azure AIS)</div>
-        <ul class="project-bullets">
-          <li>Developed AI-assisted solutions using OpenAI/ChatGPT to convert MuleSoft projects into Azure Integration Services (AIS) artifacts.</li>
-          <li>Designed a <strong>Generator-Evaluator-Optimizer LLM framework</strong> that scored outputs against evaluation rubrics and refined them iteratively.</li>
-          <li>Streamed large-scale data through processing stages (ingest, generate, evaluate, optimise, publish) via <strong>Apache Kafka</strong> for high throughput.</li>
-          <li>Stored source inputs and generated versions in MinIO and deployed on Kubernetes for autoscaling.</li>
-        </ul>
-        <div class="project-stack">
-          <span class="stack-tag">OpenAI</span>
-          <span class="stack-tag">Apache Kafka</span>
-          <span class="stack-tag">Kubernetes</span>
-          <span class="stack-tag">MinIO</span>
-        </div>
-      </div>
-
-      <!-- IMA Project -->
-      <div class="project-block">
-        <span class="project-role-label">PROOF OF CONCEPT (PoC)</span>
-        <div class="project-title">▸ IMA — TIBCO to Apache Camel Migration using OpenAI</div>
-        <ul class="project-bullets">
-          <li>Automated end-to-end migration from TIBCO to Apache Camel in a PoC, using OpenAI to generate route templates and transformation logic.</li>
-          <li>Designed a serverless AWS Lambda microservices workflow, orchestrated with Amazon SNS, to parse, transform, validate, and package outputs.</li>
-        </ul>
-        <div class="project-stack">
-          <span class="stack-tag">AWS Lambda</span>
-          <span class="stack-tag">Amazon SNS</span>
-          <span class="stack-tag">Apache Camel</span>
-          <span class="stack-tag">OpenAI</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education" class="section-pad">
-  <div class="section-label">Academic background</div>
-  <h2 class="section-title reveal"><em>Education</em></h2>
-
-  <div class="edu-grid">
-    <div class="edu-card reveal">
-      <div class="edu-degree">MSc Data Science (with Placement)</div>
-      <div class="edu-institution">University of Hertfordshire, UK</div>
-      <div class="edu-score" style="font-size: 24px; margin-top: 5px;">09/2026 – 10/2028</div>
-      <div class="edu-score-label">Expected Graduation</div>
-      <div class="edu-year">Focus: Data Handling, Visualisation &amp; Applied DS</div>
-    </div>
-    <div class="edu-card reveal">
-      <div class="edu-degree">B.Tech in Electronics &amp; Comm.</div>
-      <div class="edu-institution">GITAM School of Technology, India</div>
-      <div class="edu-score">9.71</div>
-      <div class="edu-score-label">CGPA (First-Class Honours)</div>
-      <div class="edu-year">08/2020 – 05/2024 · Gold Medallist</div>
-    </div>
-  </div>
-</section>
-
-<!-- ACHIEVEMENTS -->
-<section id="achievements" class="section-pad">
-  <div class="section-label">Recognition &amp; honors</div>
-  <h2 class="section-title reveal"><em>Achievements</em></h2>
-
-  <div class="achieve-grid">
-    <div class="achieve-card reveal">
-      <div class="achieve-icon">🏅</div>
-      <div class="achieve-title">Gold Medallist</div>
-      <div class="achieve-desc">First Rank in the B.Tech programme at GITAM School of Technology.</div>
-    </div>
-    <div class="achieve-card reveal">
-      <div class="achieve-icon">🎖️</div>
-      <div class="achieve-title">NCC 'C' Certificate</div>
-      <div class="achieve-desc">Ranked as Sergeant, demonstrating strong discipline and leadership.</div>
-    </div>
-    <div class="achieve-card reveal">
-      <div class="achieve-icon">🚀</div>
-      <div class="achieve-title">1st Prize — World Space Week</div>
-      <div class="achieve-desc">Awarded First Prize during World Space Week 2017 for exceptional performance.</div>
-    </div>
-  </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section id="certifications" class="section-pad">
-  <div class="section-label">Continuous learning</div>
-  <h2 class="section-title reveal"><em>Certifications</em></h2>
-
-  <div class="cert-grid">
-    <div class="cert-card reveal">
-      <div class="cert-icon">📊</div>
-      <div class="cert-content">
-        <div class="cert-title">Deloitte Data Analytics Job Simulation</div>
-        <div class="cert-issuer">Forage</div>
-        <div class="cert-desc">Undertook practical tasks in data analysis and forensic technology.</div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <div class="cert-icon">🤖</div>
-      <div class="cert-content">
-        <div class="cert-title">AI Tools &amp; ChatGPT Workshop</div>
-        <div class="cert-issuer">be10x</div>
-        <div class="cert-desc">Demonstrated competencies in using AI to analyse data, write code, and debug.</div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <div class="cert-icon">📈</div>
-      <div class="cert-content">
-        <div class="cert-title">Microsoft Excel Certification</div>
-        <div class="cert-issuer">Skill Course</div>
-        <div class="cert-desc">Completed a certified self-learning course in Microsoft Excel for data organisation and calculations.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section-pad">
-  <div class="section-label">Let's connect</div>
-  <h2 class="contact-title reveal">Let's build<br/><em>something great</em></h2>
-  <p class="contact-sub reveal">Open to technical placements, data science, and software engineering opportunities. Always happy to discuss technical challenges.</p>
-  <div class="contact-links reveal">
-    <a href="mailto:snehayanamala1@gmail.com" class="contact-link">
-      <span>✉</span> snehayanamala1@gmail.com
-    </a>
-    <a href="https://www.linkedin.com/in/karanam-keerthana-sharma-845048252/" target="_blank" rel="noopener noreferrer" class="contact-link">
-      <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#0A66C2;color:#fff;border-radius:3px;font-weight:700;font-size:11px;font-family:'Source Sans 3',sans-serif;">in</span> LinkedIn
-    </a>
-    <a href="tel:+447384887018" class="contact-link">
-      <span>📞</span> +44 7384887018
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <span>© 2026 Naga Sai Sneha Yanamala</span>
-  <span>MSc Data Science · Software Engineering</span>
+  <p>© 2026 Naga Sai Sneha Yanamala. Built with modern web tech.</p>
 </footer>
 
 <script>
-  // ── THEME TOGGLE ──
-  function toggleTheme() {
-    const root = document.documentElement;
-    const current = root.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('portfolio-theme', next); } catch (e) {}
-  }
-  // Load saved theme
-  try {
-    const saved = localStorage.getItem('portfolio-theme');
-    if (saved) document.documentElement.setAttribute('data-theme', saved);
-  } catch (e) {}
-
-  // ── SCROLL REVEAL ──
-  const revealEls = document.querySelectorAll('.reveal');
+  // Simple scroll animation for cards
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 70);
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
       }
     });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => observer.observe(el));
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card, .timeline-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'all 0.6s ease-out';
+    observer.observe(el);
+  });
 </script>
 </body>
 </html>
